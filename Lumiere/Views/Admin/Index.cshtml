@@ -15,6 +15,7 @@
                     <div class="nav flex-column nav-tabs" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active text-dark" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Пользователи</a>
                         <a class="nav-link text-dark" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Фильмы</a>
+                        <a class="nav-link text-dark" id="v-pills-addSession-tab" data-toggle="pill" href="#v-pills-addSession" role="tab" aria-controls="v-pills-profile" aria-selected="false">Добавить сеанс</a>
                     </div>
                 </div>
 
@@ -34,7 +35,7 @@
                         <div class="text-center">
                             <span class="h5">Добавить сеанс</span>
                         </div>
-                        
+                        @await Html.PartialAsync("CreateSeance", new Lumiere.ViewModels.CreateSeanceViewModel())
                     </div>
                 </div>
             </div>
