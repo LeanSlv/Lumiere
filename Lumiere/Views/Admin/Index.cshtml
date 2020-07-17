@@ -2,8 +2,8 @@
     ViewData["Title"] = "Index";
 }
 
-    <main id="container--account">
-        <div class="container w-75 mt-4">
+    <div class="container--account">
+        <div class="container w-75 mt-4 mb-5">
             <div class="d-flex align-items-center mb-4">
                 <h4 class="flex-grow-1 text-center">Панель администратора</h4>
             </div>
@@ -16,6 +16,7 @@
                         <a class="nav-link active text-dark" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Пользователи</a>
                         <a class="nav-link text-dark" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Фильмы</a>
                         <a class="nav-link text-dark" id="v-pills-addSession-tab" data-toggle="pill" href="#v-pills-addSession" role="tab" aria-controls="v-pills-profile" aria-selected="false">Добавить сеанс</a>
+                        <a class="nav-link text-info" asp-controller="Film" asp-action="Create">Добавить фильм</a>
                     </div>
                 </div>
 
@@ -40,4 +41,5 @@
                 </div>
             </div>
         </div>
-    </main>
+        <hr />
+    </div>

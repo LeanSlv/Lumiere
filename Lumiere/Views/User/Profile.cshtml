@@ -4,7 +4,7 @@
     ViewData["Title"] = "Profile";
 }
 
-<main id="container--account">
+<div id="container--account">
     <div class="container w-75">
         <div class="d-flex align-items-center mt-4 mb-4">
             <h4 class="text-center flex-grow-1">Личный кабинет | @Model.FirstName @Model.SecondName</h4>
@@ -47,6 +47,6 @@
         </div>
     </div>
     <hr />
-</main>
+</div>
 
 @await Html.PartialAsync("Posters")

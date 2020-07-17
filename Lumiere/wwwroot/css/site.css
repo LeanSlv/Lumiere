@@ -7,18 +7,13 @@ header {
     background: #f8f9faf9;
 }
 
-#container--account {
+.container--account {
     background: linear-gradient(0deg, #f8f9faf9 0%, rgba(226, 226, 226, 0.3) 100%);
     padding-top: 20px;
 }
 
 .bg-gradient {
     background: linear-gradient(0deg, #f8f9faf9 0%, #f4f4023f 120%);
-}
-
-#container--register {
-    background: linear-gradient(0deg, #f8f9faf9 0%, rgba(226, 226, 226, 0.3) 100%);
-    padding-top: 40px;
 }
 
 .icofont-home {
@@ -31,6 +26,10 @@ header {
 
 .icofont-vk {
     font-size: 28px;
+}
+
+input[type="date"] {
+    width: 155px;
 }
 
 .scrollable {

@@ -8,15 +8,13 @@
     @await  Html.PartialAsync("StylesPartial")
 
 </head>
-<body class="bg-light">
+<body class="bg-light container">
     <div class="container-sm pl-1 pr-1">
         @await Html.PartialAsync("HeaderPartial")
 
-        <div class="container">
-            <main role="main" class="pb-3">
+            <main role="main" class="pb-2">
                 @RenderBody()
             </main>
-        </div>
 
         @await Html.PartialAsync("FooterPartial")
 

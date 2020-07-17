@@ -37,7 +37,7 @@
     color: red;
 }
 
-input {
+#places input {
       width: 24px;
       height: 24px;
       -webkit-appearance: none;

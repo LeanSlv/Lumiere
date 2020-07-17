@@ -4,8 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<main id="container--register">
-    <div class="container w-75 pl-5 pr-5 pb-4">
+<div class="container--account">
+    <div class="container w-75 pl-5 pr-5 pb-4 mt-4">
         <!-- title container -->
         <div class="d-flex justify-content-between text-center align-items-center mb-4">
             <h4 class="text-center flex-grow-1">@Model.Name @Model.AgeLimit+</h4>
@@ -54,6 +54,6 @@
         </div>
     </div>
     <hr />
-</main>
+</div>
 
 @await Html.PartialAsync("Posters")
