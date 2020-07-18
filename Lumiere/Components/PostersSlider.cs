@@ -32,6 +32,9 @@ namespace Lumiere.Components
                     if (film == null)
                         continue;
 
+                    if (filmPosters.ContainsKey(film.Id))
+                        continue;
+
                     if(film.Posters.Count >= 2)
                         filmPosters.Add(film.Id, film.Posters[1].Url);
                 }

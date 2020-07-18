@@ -140,7 +140,12 @@ namespace Lumiere.Controllers
 
             List<DateTime> dates = new List<DateTime>();
             foreach (FilmSeance seance in seances)
+            {
+                if (dates.Contains(seance.Date))
+                    continue;
+
                 dates.Add(seance.Date);
+            }
 
             return PartialView(dates);
         }

@@ -1,8 +1,8 @@
-﻿@model List<DateTime>
+﻿@model List<TimeSpan>
 
     <select id='time' class="select" onchange="loadRoom($('#time'));">
-        @foreach(DateTime time in Model)
+        @foreach(TimeSpan time in Model)
         {
-            <option value=@time>@time.ToString("t")</option>
+            <option value=@time>@time.ToString(@"hh\:mm")</option>
         }
     </select>

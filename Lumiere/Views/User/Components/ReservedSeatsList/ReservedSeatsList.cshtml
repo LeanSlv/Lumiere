@@ -16,8 +16,8 @@
 
                     <div class="d-flex flex-column text-center justify-content-between">
                         <span class="card-text text-dark mb-2">Длительность: @reservedFilm.FilmDuration</span>
-                        <p class="card-text h6">Дата сеанса: @reservedFilm.SeanceDate</p>
-                        <p class="card-text h6">Время сеанса: @reservedFilm.SeanceTime</p>
+                        <p class="card-text h6">Дата сеанса: @reservedFilm.SeanceDate.ToString("m")</p>
+                        <p class="card-text h6">Время сеанса: @reservedFilm.SeanceTime.ToString(@"hh\:mm")</p>
                         <p class="card-text h6">Зал @reservedFilm.RoomNumber</p>
                         @foreach (KeyValuePair<Guid, string> seatRowNumber in reservedFilm.SeatRowNumbers)
                         {
