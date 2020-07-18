@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-@await Html.PartialAsync("Posters")
+@await  Component.InvokeAsync("PostersSlider")
 
 <div class="container w-75 d-flex flex-column align-items-center pl-5 pr-5 mb-5">
     <h3 class="text-center mt-5 mb-5">Сегодня в кино</h3>
