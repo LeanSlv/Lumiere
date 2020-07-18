@@ -4,6 +4,8 @@ using Lumiere.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lumiere.Controllers
@@ -61,6 +63,26 @@ namespace Lumiere.Controllers
             await _seanceRepository.DeleteAsync(seance);
 
             return RedirectToAction("Index", "Admin");
+        }
+
+        [HttpPost]
+        public async Task DeletingPastSeances()
+        {
+            List<FilmSeance> seancesToDelete = _seanceRepository.GetAll().ToList();
+            if (seancesToDelete == null)
+                return;
+
+            foreach(FilmSeance seance in seancesToDelete)
+            {
+                if (seance.Date < DateTime.Today)
+                {
+                    await _seanceRepository.DeleteAsync(seance);
+                }
+                else if (seance.Date == DateTime.Today && seance.Time <= DateTime.Now.TimeOfDay)
+                {
+                    await _seanceRepository.DeleteAsync(seance);
+                }
+            }
         }
     }
 }

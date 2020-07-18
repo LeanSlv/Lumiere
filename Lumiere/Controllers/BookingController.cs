@@ -150,7 +150,7 @@ namespace Lumiere.Controllers
         {
             List<FilmSeance> seances = _seanceRepository.GetByFilmId(filmId).ToList();
 
-            List<DateTime> times = new List<DateTime>();
+            List<TimeSpan> times = new List<TimeSpan>();
             foreach (FilmSeance seance in seances)
             {
                 if (seance.Date == DateTime.Parse(date))
@@ -173,7 +173,7 @@ namespace Lumiere.Controllers
             if (!DateTime.TryParse(date, out DateTime seanceDate))
                 return PartialView(new List<int>());
 
-            if (!DateTime.TryParse(time, out DateTime seanceTime))
+            if (!TimeSpan.TryParse(time, out TimeSpan seanceTime))
                 return PartialView(new List<int>());
 
             List<int> roomNumbers = new List<int>();
