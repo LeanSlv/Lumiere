@@ -11,10 +11,12 @@ namespace Lumiere.Components
     public class PostersSlider : ViewComponent
     {
         private readonly ISeanceRepository _seanceRepository;
+        private readonly IFilmRepository _filmRepository;
 
-        public PostersSlider(ISeanceRepository seanceRepository)
+        public PostersSlider(ISeanceRepository seanceRepository, IFilmRepository filmRepository)
         {
             _seanceRepository = seanceRepository;
+            _filmRepository = filmRepository;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -26,8 +28,12 @@ namespace Lumiere.Components
             {
                 if(seance.Date == DateTime.Today)
                 {
-                    if(seance.Film.Posters.Count >= 2)
-                        filmPosters.Add(seance.Film.Id, seance.Film.Posters[1].Url);
+                    Film film = await _filmRepository.GetByIdAsync(seance.FilmId);
+                    if (film == null)
+                        continue;
+
+                    if(film.Posters.Count >= 2)
+                        filmPosters.Add(film.Id, film.Posters[1].Url);
                 }
             }
 
