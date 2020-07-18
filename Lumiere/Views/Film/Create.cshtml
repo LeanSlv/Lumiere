@@ -46,6 +46,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Genres">Жанры</label>
+                    <input type="text" asp-for="Genres" class="form-control" />
+                    <span asp-validation-for="Genres"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="KinopoiskId">Кинопоиск id</label>
+                    <input type="text" asp-for="KinopoiskId" class="form-control" />
+                    <span asp-validation-for="KinopoiskId"></span>
+                </div>
+
+                <div class="form-group">
                     <label asp-for="TrailerUrl">Ссылка на трейлер</label>
                     <input type="url" asp-for="TrailerUrl" class="form-control" />
                     <span asp-validation-for="TrailerUrl"></span>

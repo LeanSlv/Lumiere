@@ -104,6 +104,36 @@ function loadPrice(select_room) {
         success: function (data) {
             $('#price').text(data);
             price = data;
+            loadFormat();
+        }
+    });
+}
+
+function loadFormat() {
+    var filmId = $('#film').val();
+    var date = $('#date').val();
+    var time = $('#time').val();
+    var room = $('#roomNumber').val();
+    var price = $('#price').text();
+
+    var filmSeance = {
+        FilmId: filmId,
+        Date: date,
+        Time: time,
+        RoomNumber: room,
+        Price: price
+    }
+
+    console.log("op");
+
+    $.ajax({
+        type: 'POST',
+        url: '/Booking/LoadFormat',
+        data: filmSeance,
+        dataType: "json",
+        success: function (data) {
+            console.log("data: " + data);
+            $('#format').text(data);
             SetReservedSeats();
         }
     });

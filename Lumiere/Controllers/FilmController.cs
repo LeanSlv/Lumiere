@@ -57,7 +57,9 @@ namespace Lumiere.Controllers
                 Description = model.Description,
                 AgeLimit = model.AgeLimit,
                 ReleaseDate = model.ReleaseDate,
-                Duration = model.Duration
+                Duration = model.Duration,
+                Genres = model.Genres,
+                KinopoiskId = model.KinopoiskId
             };
             await _filmRepository.CreateAsync(film);
 

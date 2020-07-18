@@ -224,5 +224,30 @@ namespace Lumiere.Controllers
 
             return 0;
         }
+
+        [HttpPost]
+        public string LoadFormat(FilmSeance filmSeance)
+        {
+            if (!ModelState.IsValid)
+                return "";
+
+            List<FilmSeance> seances = _seanceRepository.GetByFilmId(filmSeance.FilmId).ToList();
+            if (seances == null)
+                return "";
+
+            foreach (FilmSeance seance in seances)
+            {
+                if (seance.Date == filmSeance.Date &&
+                    seance.Time == filmSeance.Time &&
+                    seance.RoomNumber == filmSeance.RoomNumber &&
+                    seance.FilmId == filmSeance.FilmId &&
+                    seance.Price == filmSeance.Price)
+                {
+                    return seance.Format;
+                }
+            }
+
+            return "";
+        } 
     }
 }

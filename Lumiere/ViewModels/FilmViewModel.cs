@@ -17,5 +17,7 @@ namespace Lumiere.ViewModels
         public DateTime ReleaseDate { get; set; }
         public TimeSpan Duration { get; set; }
         public string TrailerUrl { get; set; }
+        public string Genres { get; set; }
+        public string KinopoiskId { get; set; }
     }
 }

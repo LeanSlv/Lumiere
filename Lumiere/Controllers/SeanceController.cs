@@ -41,7 +41,8 @@ namespace Lumiere.Controllers
                 Time = model.Time,
                 Price = model.Price,
                 FilmId = model.FilmId,
-                RoomNumber = model.RoomNumber
+                RoomNumber = model.RoomNumber,
+                Format = model.Format
             };
 
             await _seanceRepository.CreateAsync(seance);
