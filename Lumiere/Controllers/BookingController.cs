@@ -26,7 +26,7 @@ namespace Lumiere.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(Guid filmId = default)
         {
             List<Film> films = _filmRepository.GetAll().ToList();
 
@@ -38,6 +38,9 @@ namespace Lumiere.Controllers
                     FilmName = film.Name
                 });
             }
+
+            if (filmId != default)
+                ViewBag.SelectedFilm = filmId;
 
             return View(bookingFilms);
         }

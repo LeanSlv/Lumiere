@@ -14,7 +14,14 @@
                     <select id='film' class="select" onchange="loadDates($('#film'));">
                         @foreach (BookingFilmViewModel bookingFilm in Model)
                         {
-                            <option value=@bookingFilm.FilmId>@bookingFilm.FilmName</option>
+                            @if (ViewBag.SelectedFilm == bookingFilm.FilmId)
+                            {
+                                <option value=@bookingFilm.FilmId selected>@bookingFilm.FilmName</option>
+                            }
+                            else
+                            {
+                                <option value=@bookingFilm.FilmId>@bookingFilm.FilmName</option>
+                            }
                         }
                     </select>
 
