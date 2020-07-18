@@ -8,7 +8,7 @@
     <div class="container w-75 pl-5 pr-5 pb-4 mt-4">
         <!-- title container -->
         <div class="d-flex justify-content-between text-center align-items-center mb-4">
-            <h4 class="text-center flex-grow-1">@Model.Name @Model.AgeLimit+</h4>
+            <h4 class="text-center flex-grow-1 text-wrap">@Model.Name @Model.AgeLimit+</h4>
 
             @if (User.IsInRole("admin"))
             {
@@ -49,7 +49,7 @@
             </div>
         </div>
         <!-- movie description -->
-        <div class="text-center pl-5 pr-5 h5">
+        <div class="text-center text-wrap pl-5 pr-5 h5">
             @Model.Description
         </div>
     </div>
