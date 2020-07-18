@@ -26,7 +26,7 @@ namespace Lumiere.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(Guid filmId = default)
         {
             List<Film> films = _filmRepository.GetAll().ToList();
 
@@ -38,6 +38,9 @@ namespace Lumiere.Controllers
                     FilmName = film.Name
                 });
             }
+
+            if (filmId != default)
+                ViewBag.SelectedFilm = filmId;
 
             return View(bookingFilms);
         }
@@ -137,7 +140,12 @@ namespace Lumiere.Controllers
 
             List<DateTime> dates = new List<DateTime>();
             foreach (FilmSeance seance in seances)
+            {
+                if (dates.Contains(seance.Date))
+                    continue;
+
                 dates.Add(seance.Date);
+            }
 
             return PartialView(dates);
         }
@@ -147,7 +155,7 @@ namespace Lumiere.Controllers
         {
             List<FilmSeance> seances = _seanceRepository.GetByFilmId(filmId).ToList();
 
-            List<DateTime> times = new List<DateTime>();
+            List<TimeSpan> times = new List<TimeSpan>();
             foreach (FilmSeance seance in seances)
             {
                 if (seance.Date == DateTime.Parse(date))
@@ -170,7 +178,7 @@ namespace Lumiere.Controllers
             if (!DateTime.TryParse(date, out DateTime seanceDate))
                 return PartialView(new List<int>());
 
-            if (!DateTime.TryParse(time, out DateTime seanceTime))
+            if (!TimeSpan.TryParse(time, out TimeSpan seanceTime))
                 return PartialView(new List<int>());
 
             List<int> roomNumbers = new List<int>();

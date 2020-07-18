@@ -1,7 +1,7 @@
 ﻿@model Lumiere.Models.Film
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Model.Name;
 }
 
 <div class="container--account">
@@ -41,10 +41,10 @@
                             }
                         }
                     </div>
-                    <button type="button" class="btn btn-warning align-self-center mt-4">
+                    <a class="btn btn-warning align-self-center mt-4" asp-controller="Booking" asp-action="Index" asp-route-filmId=@Model.Id>
                         <i class="icofont-film pr-2"></i>
                         Забронировать
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -56,4 +56,4 @@
     <hr />
 </div>
 
-@await Html.PartialAsync("Posters")
+@await Component.InvokeAsync("PostersSlider")

@@ -12,7 +12,7 @@ namespace Lumiere.Models
         public DateTime Date { get; set; }
 
         [DataType(DataType.Time)]
-        public DateTime Time { get; set; }
+        public TimeSpan Time { get; set; }
         public int Price { get; set; }
         public int RoomNumber { get; set; }
         public Guid FilmId { get; set; }

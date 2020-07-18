@@ -1,0 +1,7 @@
+﻿@using Lumiere.ViewModels
+@model List<FilmsSelectViewModel>
+
+@foreach(FilmsSelectViewModel filmSelect in Model)
+{
+    <option value=@filmSelect.FilmId>@filmSelect.FilmName</option>
+}
