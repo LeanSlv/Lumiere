@@ -40,7 +40,7 @@ function validRegistration(){
   }
 
   if (!validatePass(pass)) {
-      exception="Пароль должен содержать одну цифру и одну большую букву.  ";
+      exception="Пароль должен содержать одну цифру и одну большую букву";
       $('#password_helper').text(exception);
   }
   else{
