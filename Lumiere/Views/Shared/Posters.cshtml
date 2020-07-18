@@ -1,10 +1,12 @@
-﻿<div class="d-flex justify-content-around shadow">
+﻿@using System.Globalization
+
+<div class="d-flex justify-content-around shadow">
     <div class="d-flex flex-column justify-content-center text-center">
         <h2>
             Афиша
         </h2>
         <h3 class="h5">
-            на 10 июля, пятница
+            на @DateTime.Today.ToString("m"), @string.Format(new CultureInfo("ru-RU"), DateTime.Today.ToString("dddd"))
         </h3>
     </div>
     <div class="swiper-container">
