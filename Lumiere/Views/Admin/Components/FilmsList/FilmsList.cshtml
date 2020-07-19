@@ -4,7 +4,7 @@
 
 @foreach(Film film in Model) 
 {
-    <div class="card mb-3" style="max-height: 255px;">
+    <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a asp-controller="Film" asp-action="Index" asp-route-id=@film.Id>
@@ -24,21 +24,20 @@
                     </div>
 
                     <div class="d-flex flex-column text-center justify-content-between mr-5 pl-3 pr-3">
-                        <span class="text-dark mb-2">драма, приключение, семейный</span>
+                        <span class="text-dark mb-2">@film.Genres</span>
                         <small class="card-text text-dark">Длительность: @film.Duration</small>
-                        <small class="card-text">Формат: 2D</small>
-                        <small class="card-text pr-2 pl-2">
-                            Время сеансов сегодня:
-                            <br />
-                            @foreach (FilmSeance seance in film.Seances)
-                            {
-                                if (seance.Date == DateTime.Today)
-                                {
-                                    <span class="card-text">@seance.Time.ToString(@"hh\:mm")</span>
-                                }
-                            }
-                        </small>
                         <small class="card-text mt-1 text-truncate">@film.Description</small>
+                        <small class="card-text pr-2 pl-2">Сеансы:</small>
+                        <hr />
+                        @foreach (FilmSeance seance in film.Seances)
+                        {
+                            <smal class="card-text">@seance.Format @seance.Date.ToString("m") @seance.Time.ToString(@"hh\:mm") @seance.Price руб</smal>
+
+                            <form asp-controller="Seance" asp-action="Delete" asp-route-id=@seance.Id>
+                                <button type="submit"><i class="fas fa-times"></i></button>
+                            </form>
+                            <hr />
+                        }
                     </div>
                 </div>
             </div>
