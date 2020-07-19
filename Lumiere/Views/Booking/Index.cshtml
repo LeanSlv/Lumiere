@@ -89,7 +89,6 @@
                         <tr>
                             <th class="field">Формат:</th>
                             <td id="format" class="value">
-                                
                             </td>
                         </tr>
                         <tr>
@@ -120,4 +119,7 @@
     <hr />
 </div>
 
-@await Component.InvokeAsync("PostersSlider")
+@if (!User.IsInRole("admin"))
+{
+    await Component.InvokeAsync("PostersSlider");
+}

@@ -1,6 +1,6 @@
 ﻿$(function () {
     loadDates($('#film'));
-    setInterval(SetReservedSeats, 1000);
+    SetReservedSeats();
 });
 
 function SetReservedSeats() {

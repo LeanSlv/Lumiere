@@ -13,7 +13,7 @@ $(function () {
     });
 
     // Проверка и удаление сеансов каждую минуту.
-    setInterval(deletingPastSeances, 60000);
+    setInterval(deletingPastSeances, 900000);
 });
 
 function deletingPastSeances() {

@@ -55,7 +55,7 @@ namespace Lumiere.Services
 
         public EmailMessage GetResetPasswordMessage(string userName, string userEmail, string callbackUrl)
         {
-            string messageBody = GenerateResetPasswordMessageBody(callbackUrl);
+            string messageBody = GenerateResetPasswordMessageBody(userName, callbackUrl);
 
             return new EmailMessage
             {
@@ -68,19 +68,27 @@ namespace Lumiere.Services
 
         private string GenerateConfirmEmailMessageBody(string userName, string callbackUrl)
         {
+            
             return
                 "<div>" +
                     "<div style = 'padding: 0.5em; margin: 0 auto; width: 50%; font-size: 1.2rem; font-family: Arial, Helvetica, sans-serif;'>" +
                         $"<div style = 'margin-bottom: 0.7em;' > Здравствуйте {userName},</div>" +
                         "<div style = 'margin-bottom: 1.5em;' > Для того, чтобы продолжить регистрацию на сайте Lumiere.ru, пожалуйста, подтвердите ваш email адрес:</div>" +
-                        $"<a style = 'display: flex; padding: 1.5em; background-color: #587fcc; color: white; justify-content: center; text-decoration: none; border-radius: 25px;' href = '{callbackUrl}' > Подтверить email адрес</a>" +
+                        $"<a style = 'display: flex; padding: 1.5em; background-color: #ffa600; color: white; justify-content: center; text-decoration: none; border-radius: 25px;' href = '{callbackUrl}' > Подтверить email адрес</a>" +
                      "</div>" +
                 "</div>";
         }
 
-        private string GenerateResetPasswordMessageBody(string callbackUrl)
+        private string GenerateResetPasswordMessageBody(string userName, string callbackUrl)
         {
-            return $"Для сброса пароля пройдите по <a href='{callbackUrl}'>этой ссылке</a>";
+            return
+                "<div>" +
+                    "<div style = 'padding: 0.5em; margin: 0 auto; width: 50%; font-size: 1.2rem; font-family: Arial, Helvetica, sans-serif;'>" +
+                        $"<div style = 'margin-bottom: 0.7em;' > Здравствуйте {userName},</div>" +
+                        "<div style = 'margin-bottom: 1.5em;' > Для сброса пароля пройдите по ссылке, нажав на кнопку ниже.</div>" +
+                        $"<a style = 'display: flex; padding: 1.5em; background-color: #ffa600; color: white; justify-content: center; text-decoration: none; border-radius: 25px;' href = '{callbackUrl}'>Сбросить пароль</a>" +
+                     "</div>" +
+                "</div>";
         }
     }
 }
