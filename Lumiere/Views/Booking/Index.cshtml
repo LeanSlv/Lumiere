@@ -9,109 +9,115 @@
         <h4 class="text-center mb-4">Бронирование билетов</h4>
         <hr>
 
-        <div class="information container w-75" id="information">
-            <div id="options" class="d-flex justify-content-around">
-                <select id='film' class="select" onchange="loadDates($('#film'));" style="max-width: 225px;">
-                    @foreach (BookingFilmViewModel bookingFilm in Model)
-                    {
-                        @if (ViewBag.SelectedFilm == bookingFilm.FilmId)
+        <div class="information container w-75 pt-4 pb-4" id="information">
+            <!-- selects -->
+            <div id="options" class="d-flex justify-content-around mb-3">
+
+                <div class="form-group">
+                    <label for="film">Название фильма</label>
+                    <select id="film" class="form-control" style="max-width: 225px;" onchange="loadDates($('#film'));">
+                        @foreach (BookingFilmViewModel bookingFilm in Model)
                         {
-                            <option value=@bookingFilm.FilmId selected>@bookingFilm.FilmName</option>
+                            @if (ViewBag.SelectedFilm == bookingFilm.FilmId)
+                            {
+                                <option value=@bookingFilm.FilmId selected>@bookingFilm.FilmName</option>
+                            }
+                            else
+                            {
+                                <option value=@bookingFilm.FilmId>@bookingFilm.FilmName</option>
+                            }
                         }
-                        else
-                        {
-                            <option value=@bookingFilm.FilmId>@bookingFilm.FilmName</option>
-                        }
-                    }
-                </select>
-
-                <select id="date" class="select" onchange="loadTimes(this);">
-                </select>
-
-                <select id="time" class="select">
-                </select>
-
-                <select id="roomNumber" class="select">
-                </select>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Дата</label>
+                    <select id="date" class="form-control" onchange="loadTimes($('#date'));"></select>
+                </div>
+                <div class="form-group">
+                    <label for="time">Время</label>
+                    <select id="time" class="form-control" onchange="loadRoom($('#time'));"></select>
+                </div>
+                <div class="form-group">
+                    <label for="roomNumber">Зал</label>
+                    <select id="roomNumber" class="form-control" onchange="loadPrice($('#roomNumber'));"></select>
+                </div>
             </div>
-            <table id="places">
+
+            <table id="places" class="mb-2">
                 <tr>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
                 </tr>
                 <tr>
-                    <td id="checkbox"><input class="check" oninput="f()" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" oninput="f()" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" oninput="f()" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" oninput="f()" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" oninput="f()" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
                 </tr>
 
                 <tr>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
                 </tr>
 
                 <tr>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
                 </tr>
 
                 <tr>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
                 </tr>
 
                 <tr id="row_6">
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
-                    <td id="checkbox"><input class="check" onclick="takePlace(this)" type="checkbox" placeholder="1:1"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
+                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
                 </tr>
             </table>
 
-            <div class="d-flex justify-content-around align-items-center mt-3">
+            <div class="text-center"><span id="place_help" class="text-danger"></span></div>
+            <div class="d-flex justify-content-around align-items-center mt-2">
                 <table id="table">
                     <tbody>
                         <tr>
-                            <th class="field">Формат:</th>
-                            <td id="format" class="value">
-                            </td>
+                            <th class="text-right">Формат:</th>
+                            <td id="format" class="value pl-2"></td>
                         </tr>
                         <tr>
-                            <th class="field">Выбрано мест:</th>
-                            <td id="number" class="value">
-                                0
-                            </td>
+                            <th class="text-right">Выбрано мест:</th>
+                            <td id="number" class="value pl-2">0</td>
                         </tr>
                         <tr>
-                            <th class="field">Стоимость(руб):</th>
-                            <td class="value" id="price">
-                                0
-                            </td>
+                            <th class="text-right">Стоимость билета:</th>
+                            <td class="value pl-2" id="price">0</td>
                         </tr>
                         <tr>
-                            <th class="field">Общая стоимость(руб):</th>
+                            <th class="field">Общая стоимость:</th>
                             <td id="total_price" class="value">
                                 0
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <button id="buy" onclick="book()" class="btn btn-secondary">Бронировать</button>
+
+                <button id="buy" onclick="book()" class="btn btn-outline-success">Бронировать</button>
             </div>
             <span id="place_help" class="help"></span>
         </div>
