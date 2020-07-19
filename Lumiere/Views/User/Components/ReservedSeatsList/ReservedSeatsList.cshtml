@@ -4,6 +4,7 @@
 @foreach (ReservedFilmViewModel reservedFilm in Model)
 {
     <div class="card mb-3" style="max-width: 540px;">
+        @* to add scroll change the previous line <div class="card mb-3" style="max-width: 540px; max-height: 207px; overflow-y: scroll;"> *@
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a asp-controller="Film" asp-action="Index" asp-route-id=@reservedFilm.FilmId>
@@ -11,20 +12,26 @@
                 </a>
             </div>
             <div class="col-md-8">
-                <div class="card-body">
+                <div class="card-body pt-2">
                     <h5 class="card-title text-center">@reservedFilm.FilmName</h5>
 
                     <div class="d-flex flex-column text-center justify-content-between">
-                        <span class="card-text text-dark mb-2">Длительность: @reservedFilm.FilmDuration</span>
-                        <p class="card-text h6">Дата сеанса: @reservedFilm.SeanceDate.ToString("m")</p>
-                        <p class="card-text h6">Время сеанса: @reservedFilm.SeanceTime.ToString(@"hh\:mm")</p>
-                        <p class="card-text h6">Зал @reservedFilm.RoomNumber</p>
+                        <span class="card-text text-dark">Длительность: @reservedFilm.FilmDuration</span>
+                        <div>
+                            <span class="card-text">Дата: @reservedFilm.SeanceDate.ToString("m")</span>&ensp;
+                            <span class="card-text">Время: @reservedFilm.SeanceTime.ToString(@"hh\:mm")</span>
+                        </div>
+                        <span class="card-text mt-2 h6 mb-0">@reservedFilm.RoomNumber</span>
                         @foreach (KeyValuePair<Guid, string> seatRowNumber in reservedFilm.SeatRowNumbers)
                         {
-                            <p class="card-text h6">@seatRowNumber.Value</p>
-                            <form asp-controller="Booking" asp-action="Delete" asp-route-seatId=@seatRowNumber.Key>
-                                <button type="submit"><i class="fas fa-times"></i></button>
-                            </form>
+                            <div class="d-flex align-items-center justify-content-around">
+                                <span class="card-text flex-grow-1 h6 mb-0">@seatRowNumber.Value</span>
+                                <form asp-controller="Booking" asp-action="Delete" asp-route-seatId=@seatRowNumber.Key>
+                                    <button type="submit">
+                                        <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
+                                    </button>
+                                </form>
+                            </div>
                         }
                     </div>
                 </div>
