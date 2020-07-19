@@ -28,9 +28,18 @@
         {
             <div>
                 <div>
-                    <a class="text-dark" asp-controller="Admin" asp-action="Index" asp-route-id=@await _userRepository.GetCurrentUserId(User)>
-                        Админ-панель
-                    </a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="text-dark" asp-controller="Admin" asp-action="Index">
+                            Админ-панель
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="text-dark" asp-controller="User" asp-action="Profile" asp-route-id=@await _userRepository.GetCurrentUserId(User)>
+                            Мой профиль
+                        </a>
+                    }
                 </div>
 
                 <div>
