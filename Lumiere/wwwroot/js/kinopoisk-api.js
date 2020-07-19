@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     var kinopoisk_id = $('#kinopoisk_id').val();
     if (kinopoisk_id !== null || kinopoisk_id !== "") {
-        console.log("id = " + kinopoisk_id);
         getRaiting(kinopoisk_id);
     }
 });

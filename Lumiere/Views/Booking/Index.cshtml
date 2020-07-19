@@ -125,7 +125,4 @@
     <hr />
 </div>
 
-@if (!User.IsInRole("admin"))
-{
-    await Component.InvokeAsync("PostersSlider");
-}
+@(!User.Identity.IsAuthenticated || !User.IsInRole("admin") ? await Component.InvokeAsync("PostersSlider") : new StringHtmlContent(""))
