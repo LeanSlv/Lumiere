@@ -16,6 +16,7 @@ namespace Lumiere.Controllers
         private readonly IFilmRepository _filmRepository;
         private readonly IUserRepository _userRepository;
         private readonly ISeanceRepository _seanceRepository;
+        private readonly int seatsCountInRow;
 
         public BookingController(IReservedSeatRepository reservedSeatRepository, IFilmRepository filmRepository, IUserRepository userRepository, ISeanceRepository seanceRepository)
         {
@@ -23,6 +24,7 @@ namespace Lumiere.Controllers
             _filmRepository = filmRepository;
             _userRepository = userRepository;
             _seanceRepository = seanceRepository;
+            seatsCountInRow = 5;
         }
 
         [Authorize]
@@ -66,7 +68,8 @@ namespace Lumiere.Controllers
             List<int> seatsNumber = new List<int>();
             foreach(ReservedSeat reservedSeat in seance.ReservedSeats)
             {
-                seatsNumber.Add(reservedSeat.SeatsNumber);
+                int seatNumber = (reservedSeat.SeatsNumber) + ((reservedSeat.RowNumber - 1) * seatsCountInRow);
+                seatsNumber.Add(seatNumber);
             }
 
             return seatsNumber.ToArray();
@@ -95,20 +98,15 @@ namespace Lumiere.Controllers
             if (seanceId == default)
                 return false;
 
-
-            int seatsCountInRow = 6;
-            if (reservedSeats.RoomNumber == 1)
-                seatsCountInRow = 6;
-            else if (reservedSeats.RoomNumber == 2)
-                seatsCountInRow = 5;
-
             for (int i = 0; i < reservedSeats.SeatNumbers.Length; i++)
             {
-                double rowNumber = ((double) reservedSeats.SeatNumbers[i] + 1) / ((double) seatsCountInRow);
+                double row = ((double) reservedSeats.SeatNumbers[i] + 1) / ((double) seatsCountInRow);
+                int rowNumber = Convert.ToInt32(Math.Ceiling(row));
+                int seatNumber = (reservedSeats.SeatNumbers[i] + 1) - ((rowNumber - 1) * seatsCountInRow);
                 ReservedSeat reservedSeat = new ReservedSeat
                 {
-                    RowNumber = Convert.ToInt32(Math.Ceiling(rowNumber)),
-                    SeatsNumber = reservedSeats.SeatNumbers[i] + 1,
+                    RowNumber = rowNumber,
+                    SeatsNumber = seatNumber,
                     UserId = userId,
                     SeanceId = seanceId
                 };
