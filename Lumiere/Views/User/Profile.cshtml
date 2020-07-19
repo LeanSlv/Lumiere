@@ -49,4 +49,7 @@
     <hr />
 </div>
 
-@await Html.PartialAsync("Posters")
+@if (!User.IsInRole("admin"))
+{
+    await Component.InvokeAsync("PostersSlider")
+}

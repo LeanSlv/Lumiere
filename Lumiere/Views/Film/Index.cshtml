@@ -56,4 +56,7 @@
     <hr />
 </div>
 
-@await Component.InvokeAsync("PostersSlider")
+@if (!User.IsInRole("admin"))
+{
+    await Component.InvokeAsync("PostersSlider")
+}
