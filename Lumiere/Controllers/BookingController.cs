@@ -16,6 +16,7 @@ namespace Lumiere.Controllers
         private readonly IFilmRepository _filmRepository;
         private readonly IUserRepository _userRepository;
         private readonly ISeanceRepository _seanceRepository;
+        private readonly int seatsCountInRow;
 
         public BookingController(IReservedSeatRepository reservedSeatRepository, IFilmRepository filmRepository, IUserRepository userRepository, ISeanceRepository seanceRepository)
         {
@@ -23,6 +24,7 @@ namespace Lumiere.Controllers
             _filmRepository = filmRepository;
             _userRepository = userRepository;
             _seanceRepository = seanceRepository;
+            seatsCountInRow = 5;
         }
 
         [Authorize]
@@ -63,12 +65,6 @@ namespace Lumiere.Controllers
             if (seance == null)
                 return new int[] { };
 
-            int seatsCountInRow = 6;
-            if (seance.RoomNumber == 1)
-                seatsCountInRow = 6;
-            else if (seance.RoomNumber == 2)
-                seatsCountInRow = 5;
-
             List<int> seatsNumber = new List<int>();
             foreach(ReservedSeat reservedSeat in seance.ReservedSeats)
             {
@@ -101,13 +97,6 @@ namespace Lumiere.Controllers
             Guid seanceId = await _seanceRepository.GetIdBySeance(seance);
             if (seanceId == default)
                 return false;
-
-
-            int seatsCountInRow = 6;
-            if (reservedSeats.RoomNumber == 1)
-                seatsCountInRow = 6;
-            else if (reservedSeats.RoomNumber == 2)
-                seatsCountInRow = 5;
 
             for (int i = 0; i < reservedSeats.SeatNumbers.Length; i++)
             {
