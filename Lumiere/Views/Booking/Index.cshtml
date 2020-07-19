@@ -6,11 +6,11 @@
 }
 
 <div class="container--account">
-    <div class="container w-75 mt-4">
+    <div class="container w-75 mt-4 mb-4">
         <h4 class="text-center mb-4">Бронирование билетов</h4>
         <hr>
 
-        <div class="information container w-75 pt-4 pb-4" id="information">
+        <div class="information container w-75 pt-4 pb-4 pl-2 pr-2" id="information">
             <!-- selects -->
             <div id="options" class="d-flex justify-content-around mb-3">
 
@@ -31,6 +31,10 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="format">Формат</label>
+                    <span id="format" class="form-control text-center"></span>
+                </div>
+                <div class="form-group">
                     <label for="date">Дата</label>
                     <select id="date" class="form-control" onchange="loadTimes($('#date'));"></select>
                 </div>
@@ -44,63 +48,167 @@
                 </div>
             </div>
 
-            <table id="places" class="mb-2">
-                <tr>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                </tr>
+            <table id="places" class="mb-2 mt-3">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td colspan="5" class="text-center">
+                            <div id="screen" class="w-75 text-center m-auto">
+                                Экран
+                            </div>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pr-4">Ряд 1</td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">1</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">2</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">3</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">4</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">5</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ряд 2</td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">1</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">2</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">3</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">4</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">5</span>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                </tr>
+                    <tr>
+                        <td>Ряд 3</td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">1</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">2</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">3</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">4</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">5</span>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                </tr>
+                    <tr>
+                        <td>Ряд 4</td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">1</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">2</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">3</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">4</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">5</span>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                </tr>
+                    <tr>
+                        <td>Ряд 5</td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">1</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">2</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">3</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">4</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">5</span>
+                        </td>
+                    </tr>
 
-                <tr id="row_6">
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                    <td id="checkbox" class="text-center"><input class="check" onclick="takePlace(this)" type="checkbox"></td>
-                </tr>
+                    <tr id="row_6">
+                        <td>Ряд 6</td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">1</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">2</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">3</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">4</span>
+                        </td>
+                        <td id="checkbox" class="text-center">
+                            <input class="check" onclick="takePlace(this)" type="checkbox">
+                            <span class="inner-input">5</span>
+                        </td>
+                    </tr>
+
+                </tbody>
             </table>
 
             <div class="text-center"><span id="place_help" class="text-danger"></span></div>
             <div class="d-flex justify-content-around align-items-center mt-2">
                 <table id="table">
                     <tbody>
-                        <tr>
-                            <th class="text-right">Формат:</th>
-                            <td id="format" class="value pl-2"></td>
-                        </tr>
                         <tr>
                             <th class="text-right">Выбрано мест:</th>
                             <td id="number" class="value pl-2">0</td>

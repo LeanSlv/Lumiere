@@ -1,3 +1,19 @@
+.inner-input {
+    cursor: context-menu;
+    position: relative;
+    right: 24px;
+    height: 0px;
+    bottom: 9px;
+    width: 0px;
+}
+
+#screen {
+    height: 30px;
+    margin-bottom: 15px;
+    border: 0.5px solid rgba(0, 0, 0, 0.363);
+    background-color: #b4b4b465;
+}
+
 .information {
     background: linear-gradient(180deg, rgba(226,226,226,1) 0%, rgba(255, 255, 255, 0) 100%);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.021);
@@ -10,7 +26,7 @@
 
     #places input {
         cursor: pointer;
-        margin-left: 20px;
+        margin-left: 10px;
         width: 30px;
         height: 30px;
         -webkit-appearance: none;
