@@ -4,16 +4,15 @@
 @foreach (ReservedFilmViewModel reservedFilm in Model)
 {
     <div class="card mb-3" style="max-width: 540px;">
-        @* to add scroll change the previous line <div class="card mb-3" style="max-width: 540px; max-height: 207px; overflow-y: scroll;"> *@
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a asp-controller="Film" asp-action="Index" asp-route-id=@reservedFilm.FilmId>
-                    <img src=@reservedFilm.FilmPosterUrl class="card-img" alt="Постер к фильму">
+                    <img src=@reservedFilm.FilmPosterUrl class="card-img" alt="Постер к фильму" style="max-height: 220px;">
                 </a>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" style="max-height: 218px; overflow-y: scroll;">
                 <div class="card-body pt-2">
-                    <h5 class="card-title text-center">@reservedFilm.FilmName</h5>
+                    <h6 class="card-text text-center">@reservedFilm.FilmName</h6>
 
                     <div class="d-flex flex-column text-center justify-content-between">
                         <span class="card-text text-dark">Длительность: @reservedFilm.FilmDuration</span>

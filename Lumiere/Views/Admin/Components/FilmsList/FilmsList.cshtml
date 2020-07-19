@@ -11,9 +11,9 @@
                     <img src=@film.Posters.First().Url class="card-img" style="max-height: 250px;" alt="Постер фильма">
                 </a>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" style="max-height: 250px; overflow-y: scroll;">
                 <div class="card-body pl-0">
-                    <div class="d-flex text-center mb-1">
+                    <div class="d-flex text-center">
                         <span class="h6 card-title text-center flex-grow-1">@film.Name @film.AgeLimit+</span>
 
                         <a class="text-info text-dark" asp-controller="Film" asp-action="Update" asp-route-id=@film.Id><i class="icofont-pencil-alt-2 ml-3"></i></a>
@@ -24,19 +24,22 @@
                     </div>
 
                     <div class="d-flex flex-column text-center justify-content-between mr-5 pl-3 pr-3">
-                        <span class="text-dark mb-2">@film.Genres</span>
-                        <small class="card-text text-dark">Длительность: @film.Duration</small>
-                        <small class="card-text mt-1 text-truncate">@film.Description</small>
-                        <small class="card-text pr-2 pl-2">Сеансы:</small>
-                        <hr />
+                        <small class="text-dark">@film.Genres</small>
+                        <small class="text-dark">Длительность: @film.Duration</small>
+                        <small class="card-text text-truncate">@film.Description</small>
+                        <p class="card-text pr-2 pl-2 mb-0 mt-3">Сеансы:</p>
+
                         @foreach (FilmSeance seance in film.Seances)
                         {
-                            <smal class="card-text">@seance.Format @seance.Date.ToString("m") @seance.Time.ToString(@"hh\:mm") @seance.Price руб</smal>
+                            <div class="d-flex align-items-center justify-content-around">
+                                <span class="card-text flex-grow-1 h6 mb-0">@seance.Format @seance.Date.ToString("m") @seance.Time.ToString(@"hh\:mm") @seance.Price руб</span>
 
-                            <form asp-controller="Seance" asp-action="Delete" asp-route-id=@seance.Id>
-                                <button type="submit"><i class="fas fa-times"></i></button>
-                            </form>
-                            <hr />
+                                <form asp-controller="Seance" asp-action="Delete" asp-route-id=@seance.Id>
+                                    <button type="submit">
+                                        <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
+                                    </button>
+                                </form>
+                            </div>
                         }
                     </div>
                 </div>
