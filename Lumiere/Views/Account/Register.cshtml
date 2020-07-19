@@ -16,11 +16,13 @@
                     <div class="form-group col">
                         <label for="lastName">Фамилия</label>
                         <input id="lastName" type="text" required class="form-control" asp-for="SecondName">
+                        <span class="form-text text-muted" asp-validation-for="SecondName"></span>
                     </div>
 
                     <div class="form-group col">
                         <label for="firstName">Имя</label>
                         <input id="firstName" type="text" required class="form-control" asp-for="FirstName">
+                        <span class="form-text text-muted" asp-validation-for="FirstName"></span>
                     </div>
                 </div>
 
@@ -28,12 +30,14 @@
                     <div class="form-group col">
                         <label for="birthDate">Дата рождения</label>
                         <input id="birthDate" type="date" required class="form-control" asp-for="DateOfBirth">
+                        <span class="form-text text-muted" asp-validation-for="DateOfBirth"></span>
                     </div>
 
                     <div class="form-group col-md-7">
                         <label for="emailEnter">Email</label>
                         <input id="emailEnter" type="email" required class="form-control" placeholder="example@gmail.com"
                                onblur="validRegistration()" asp-for="Email">
+                        <span class="form-text text-muted" asp-validation-for="Email"></span>
                         <small id="email_helper" class="form-text text-muted"></small>
                     </div>
                 </div>
@@ -42,12 +46,14 @@
                     <div class="form-group col mb-0">
                         <label for="passwordEnter">Пароль</label>
                         <input required type="password" id="passwordEnter" placeholder="******" class="form-control" onblur="validRegistration()" asp-for="NewPassword">
+                        <span class="form-text text-muted" asp-validation-for="NewPassword"></span>
                         <small class="form-text text-muted"></small>
                     </div>
 
                     <div class="form-group col mb-0">
                         <label for="passwordConfirm">Подтвердите пароль</label>
                         <input required type="password" id="passwordConfirm" placeholder="******" class="form-control" onblur="validRegistration()" asp-for="ConfirmPassword">
+                        <span class="form-text text-muted" asp-validation-for="ConfirmPassword"></span>
                     </div>
                 </div>
                     <small id="password_helper" class="form-text text-muted"></small>
