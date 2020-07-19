@@ -87,7 +87,7 @@ function setPrice(){
 
 function block(){
 	for (var i = 0; i < blocked.length; i++) {
-		seats[blocked[i]].style="background-color : #818292";
+		seats[blocked[i]].style = "background : #929397 !important";
 		if (seats[blocked[i]].checked == 1) {
 			seats[blocked[i]].checked = 0;
 			selectedSeatsCount -= 1;

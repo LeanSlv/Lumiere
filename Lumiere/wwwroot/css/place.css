@@ -1,51 +1,24 @@
-
-.information{
-  margin: 0 auto;
-  background: rgba(217, 207, 105, 0.9);
-  height: 650px;
-  padding: 20px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.82)
+.information {
+    background: linear-gradient(180deg, rgba(226,226,226,1) 0%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.021);
+    align-items: center;
 }
 
-#home{
-	position: relative;
-	left: 30%;
-	top:35px;
+#places {
+    margin: 0 auto;
 }
 
-#film{
-	position: relative;
-	left: 1%;
-}
-
-#options{
-	width: 100%;
-}
-
-#places{
-	position: relative;
-	top: 30px;
-	left: 15%;
-	height: 75%;
-	width: 75%;
-}
-
-#place_help{
-	position: relative;
-	left: 30%;
-    bottom: 600px;
-    color: red;
-}
-
-#places input {
-      width: 24px;
-      height: 24px;
-      -webkit-appearance: none;
-      background: white;
-      transition: 1s;
-      position: relative;
- }
-
- input:checked[type="checkbox"] {
-     background-color: #FF120C;
+    #places input {
+        cursor: pointer;
+        margin-left: 20px;
+        width: 30px;
+        height: 30px;
+        -webkit-appearance: none;
+        background: linear-gradient(180deg, #7edd128c 0%, #16a03485 100%);
+        transition: 0.5s;
+        outline: 1px solid rgba(0, 0, 0, 0.205);
     }
+
+input:checked[type="checkbox"] {
+    background: #f10707cb !important
+}

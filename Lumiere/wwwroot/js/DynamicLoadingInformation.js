@@ -1,6 +1,5 @@
 ﻿$(function () {
     loadDates($('#film'));
-    SetReservedSeats();
 });
 
 function SetReservedSeats() {
