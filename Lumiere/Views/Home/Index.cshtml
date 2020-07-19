@@ -6,7 +6,7 @@
 
 @if (!User.IsInRole("admin"))
 {
-    await Component.InvokeAsync("PostersSlider")
+    await Component.InvokeAsync("PostersSlider");
 }
 
 <div class="container w-75 d-flex flex-column align-items-center pl-5 pr-5 mb-5">

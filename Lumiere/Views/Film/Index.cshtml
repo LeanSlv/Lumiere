@@ -6,6 +6,8 @@
 
 <div class="container--account">
     <div class="container w-75 pl-5 pr-5 pb-4 mt-4">
+        <input type="hidden" id="kinopoisk_id" value=@Model.KinopoiskId />
+
         <!-- title container -->
         <div class="d-flex justify-content-between text-center align-items-center mb-4">
             <h4 class="text-center flex-grow-1 text-wrap">@Model.Name @Model.AgeLimit+</h4>
@@ -58,5 +60,5 @@
 
 @if (!User.IsInRole("admin"))
 {
-    await Component.InvokeAsync("PostersSlider")
+    await Component.InvokeAsync("PostersSlider");
 }

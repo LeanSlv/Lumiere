@@ -48,20 +48,32 @@
                         </div>
                     </div>
 
-                        <div class="form-group">
-                            <label asp-for="TrailerUrl">Ссылка на трейлер</label>
-                            <input type="url" asp-for="TrailerUrl" class="form-control" />
-                            <span asp-validation-for="TrailerUrl"></span>
-                        </div>
+                    <div class="form-group">
+                        <label asp-for="Genres">Жанры</label>
+                        <input type="text" asp-for="Genres" class="form-control" />
+                        <span asp-validation-for="Genres"></span>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="posters">Постеры</label>
-                            <input type="file" accept="image/*" multiple name="posters" class="form-control-file" />
-                        </div>
+                    <div class="form-group">
+                        <label asp-for="KinopoiskId">Кинопоиск id</label>
+                        <input type="text" asp-for="KinopoiskId" class="form-control" />
+                        <span asp-validation-for="KinopoiskId"></span>
+                    </div>
 
-                        <div class="text-center">
-                            <input type="submit" class="btn btn-secondary mt-2" value="Сохранить" />
-                        </div>
+                    <div class="form-group">
+                        <label asp-for="TrailerUrl">Ссылка на трейлер</label>
+                        <input type="url" asp-for="TrailerUrl" class="form-control" />
+                        <span asp-validation-for="TrailerUrl"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="posters">Постеры</label>
+                        <input type="file" accept="image/*" multiple name="posters" class="form-control-file" />
+                    </div>
+
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-secondary mt-2" value="Сохранить" />
+                    </div>
                 </form>
             </div>
         </div>
