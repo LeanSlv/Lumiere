@@ -17,14 +17,12 @@ function SetReservedSeats() {
         data: filmSeance,
         dataType: "json",
         success: function (data) {
-            if (data.length > 0) {
-                blocked = [];
-                for (var i = 0; i < data.length; i++) {
-                    blocked.push(data[i] - 1);
-                    seats[data[i] - 1].disabled = 1;
-                    block()
-                }
+            blocked = [];
+            for (var i = 0; i < data.length; i++) {
+                blocked.push(data[i] - 1);
+                seats[data[i] - 1].disabled = 1;
             }
+            block();
         }
     });
 }
@@ -103,6 +101,7 @@ function loadPrice(select_room) {
         success: function (data) {
             $('#price').text(data);
             price = data;
+            SetReservedSeats();
             loadFormat();
         }
     });
@@ -123,17 +122,13 @@ function loadFormat() {
         Price: price
     }
 
-    console.log("op");
-
     $.ajax({
         type: 'POST',
         url: '/Booking/LoadFormat',
         data: filmSeance,
         dataType: "json",
         success: function (data) {
-            console.log("data: " + data);
             $('#format').text(data);
-            SetReservedSeats();
         }
     });
 }

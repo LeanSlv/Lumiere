@@ -30,8 +30,7 @@
             <div class="col pl-1">
                 <div class="d-flex flex-column mb-4 text-center justify-content-between">
                     <span class="text-dark mb-3"><b>Рейтинг Кинопоиска: </b><span id="raiting"></span></span>
-                    <span class="text-dark mb-3">драма, приключение, семейный</span>
-                    <span class="text-dark">Формат: 2D</span>
+                    <span class="text-dark mb-3">@Model.Genres</span>
                     <span class="text-dark mb-4">Длительность: @Model.Duration.ToString("t")</span>
                     <span class="h6">Сеансы сегодня, @DateTime.Today.ToString("m"):</span>
                     <div class="d-flex justify-content-around flex-wrap">
@@ -58,7 +57,4 @@
     <hr />
 </div>
 
-@if (!User.IsInRole("admin"))
-{
-    await Component.InvokeAsync("PostersSlider");
-}
+@(!User.Identity.IsAuthenticated || !User.IsInRole("admin") ? await Component.InvokeAsync("PostersSlider") : new StringHtmlContent(""))
