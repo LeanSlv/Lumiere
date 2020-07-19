@@ -12,7 +12,7 @@ function takePlace(input){
 		setPlace()
 		setPrice()
 	}
-	if (selectedSeatsCount == 7){
+	if (selectedSeatsCount >= 7){
 		exception="Максимальное кол-во билетов: 7";
 		setMessage()
 		placeBlocking();
@@ -47,8 +47,6 @@ function book(){
 		}
 	}
 	sendJSON();
-	booked = [];
-	SetReservedSeats();
 }
 
 function sendJSON() {
@@ -67,7 +65,7 @@ function sendJSON() {
 		data: reservedSeats,
 		dataType: "json", 
 		success: function (result) {
-
+			window.location.href = '/Booking/BookingConfirm';
 		}
 	});
 }
@@ -85,7 +83,13 @@ function setPrice(){
 	document.getElementById('total_price').innerHTML = total_price;
 }
 
-function block(){
+function block() {
+	console.log("block");
+	for (var index = 0; index < seats.length; ++index) {
+		seats[index].style = "";
+		seats[index].disabled = 0;
+	}
+
 	for (var i = 0; i < blocked.length; i++) {
 		seats[blocked[i]].style = "background : #929397 !important";
 		if (seats[blocked[i]].checked == 1) {

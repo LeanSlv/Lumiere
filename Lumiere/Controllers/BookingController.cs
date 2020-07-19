@@ -45,6 +45,12 @@ namespace Lumiere.Controllers
             return View(bookingFilms);
         }
 
+        [HttpGet]
+        public IActionResult BookingConfirm()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<int[]> GetReservedSeats(FilmSeance filmSeance)
         {
@@ -68,14 +74,14 @@ namespace Lumiere.Controllers
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> ReservedSeats(ReservedSeatViewModel reservedSeats)
+        public async Task<bool> ReservedSeats(ReservedSeatViewModel reservedSeats)
         {
             if (!ModelState.IsValid)
-                return View("Index");
+                return false;
 
             string userId = await _userRepository.GetCurrentUserId(User);
             if (string.IsNullOrEmpty(userId))
-                return View("Index");
+                return false;
 
             FilmSeance seance = new FilmSeance
             {
@@ -87,7 +93,7 @@ namespace Lumiere.Controllers
             };
             Guid seanceId = await _seanceRepository.GetIdBySeance(seance);
             if (seanceId == default)
-                return View("Index");
+                return false;
 
 
             int seatsCountInRow = 6;
@@ -110,7 +116,7 @@ namespace Lumiere.Controllers
                 await _reservedSeatRepository.CreateAsync(reservedSeat);
             }
 
-            return RedirectToAction("Profile", "User", userId);
+            return true;
         }
 
         [HttpPost]
