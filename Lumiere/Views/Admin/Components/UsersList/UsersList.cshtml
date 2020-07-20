@@ -24,11 +24,12 @@
                 <td class="d-flex justify-content-center align-items-center">
                     <a class="text-info text-dark" asp-controller="User" asp-action="Edit" asp-route-id=@user.Id><i class="icofont-user"></i></a> 
                     
-                    <button onclick='userDeletionConfirm("@user.Id")' type="button">
-                        <i class="icofont-ui-delete"></i>
-                    </button>
-                    
-                    
+                    @if (User.Identity.Name != user.UserName)
+                    {
+                        <button onclick='userDeletionConfirm("@user.Id")' type="button">
+                            <i class="icofont-ui-delete"></i>
+                        </button>
+                    }
                 </td>
             </tr>
         }
