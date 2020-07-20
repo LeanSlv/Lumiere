@@ -17,10 +17,7 @@
                         <span class="h6 card-title text-center flex-grow-1">@film.Name @film.AgeLimit+</span>
 
                         <a class="text-info text-dark" asp-controller="Film" asp-action="Update" asp-route-id=@film.Id><i class="icofont-pencil-alt-2 ml-3"></i></a>
-                        <form method="post" asp-controller="Film" asp-action="Delete">
-                            <input type="hidden" asp-for=@film.Id name="id" />
-                            <button type="submit"><i class="icofont-ui-delete ml-1"></i></button>
-                        </form>
+                        <button type="button" onclick='filmDeletionConfirm("@film.Id")'><i class="icofont-ui-delete ml-1"></i></button>
                     </div>
 
                     <div class="d-flex flex-column text-center justify-content-between mr-5 pl-3 pr-3">
@@ -34,11 +31,9 @@
                             <div class="d-flex align-items-center justify-content-around">
                                 <span class="card-text flex-grow-1 h6 mb-0">@seance.Format @seance.Date.ToString("m") @seance.Time.ToString(@"hh\:mm") @seance.Price руб</span>
 
-                                <form asp-controller="Seance" asp-action="Delete" asp-route-id=@seance.Id>
-                                    <button type="submit">
-                                        <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
-                                    </button>
-                                </form>
+                                <button type="button" onclick='seanceDeletionConfirm("@seance.Id")'>
+                                    <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
+                                </button>
                             </div>
                         }
                     </div>
@@ -47,3 +42,43 @@
         </div>
     </div>
 }
+
+<div class="modal" id="filmDeleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="p-4" method="post" asp-controller="Film" asp-action="Delete">
+                    <h6>Вы уверены, что хотите удалить фильм?</h6>
+                    <br>
+                    <input type="hidden" id="film_Id" name="id" value="">
+
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="seanceDeleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="p-4" method="post" asp-controller="Seance" asp-action="Delete">
+                    <h6>Вы уверены, что хотите удалить сеанс?</h6>
+                    <br>
+                    <input type="hidden" id="seance_Id" name="id" value="">
+
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
