@@ -95,6 +95,7 @@ namespace Lumiere.Controllers
                 var result = await _userRepository.CreateWithPasswordAsync(user, model.NewPassword);
                 if (result.Succeeded)
                 {
+                    /*
                     // Генерация токена для пользователя.
                     string token = await _userRepository.GenerateEmailConfirmationTokenAsync(user);
 
@@ -110,6 +111,7 @@ namespace Lumiere.Controllers
                     // Отправка сообщения пользователю на Email для его подтверждения.
                     EmailMessage emailMessage = _emailService.GetEmailConfirmMessage(user.FirstName, user.Email, callbackUrl);
                     await _emailService.SendEmailAsync(emailMessage);
+                    */
 
                     // установка куки.
                     await _signInManager.SignInAsync(user, false);
