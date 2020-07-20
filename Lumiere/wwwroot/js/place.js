@@ -84,7 +84,6 @@ function setPrice(){
 }
 
 function block() {
-	console.log("block");
 	for (var index = 0; index < seats.length; ++index) {
 		seats[index].style = "";
 		seats[index].disabled = 0;
