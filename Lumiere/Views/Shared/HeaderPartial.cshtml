@@ -1,22 +1,17 @@
 @inject Lumiere.Repositories.IUserRepository _userRepository
 
-    <header class="d-flex container-sm sticky-top justify-content-around align-items-center">
+    <header class="d-flex shadow-sm sticky-top justify-content-around align-items-center">
         <a asp-controller="Home" asp-action="Index">
             <img src="/img/logo.png" alt="Кинотеатр Люмьер логотип" id="logo">
         </a>
 
         <div class="d-flex flex-column align-items-center">
-            <form class="search">
-                <input type="search" name="search" placeholder="Поиск по фильмам">
-                <button class="search-button" aria-label="Найти на сайте"></button>
-            </form>
-
             <ul class="list-inline m-0 pt-2">
                 <li class="list-inline-item pr-4">
                     <a class="text-dark" asp-controller="Home" asp-action="Index">Афиша</a>
                 </li>|
                 <li class="list-inline-item pl-4 pr-4">
-                    <a href=# class="text-dark">Забронировать</a>
+                    <a class="text-dark" asp-controller="Booking" asp-action="Index">Забронировать</a>
                 </li>|
                 <li class="list-inline-item pl-4">
                     <a href="#footer" class="text-dark">Контакты</a>
@@ -28,9 +23,18 @@
         {
             <div>
                 <div>
-                    <a class="text-dark" asp-controller="User" asp-action="Profile" asp-route-id=@await _userRepository.GetCurrentUserId(User)>
-                        Мой профиль
-                    </a>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <a class="text-dark" asp-controller="Admin" asp-action="Index">
+                            Админ-панель
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="text-dark" asp-controller="User" asp-action="Profile" asp-route-id=@await _userRepository.GetCurrentUserId(User)>
+                            Мой профиль
+                        </a>
+                    }
                 </div>
 
                 <div>
@@ -68,7 +72,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                @await  Html.PartialAsync("../Account/Login.cshtml", new Lumiere.ViewModels.LoginViewModel())
+                @await  Html.PartialAsync("../Account/LoginModal.cshtml", new Lumiere.ViewModels.LoginViewModel())
             </div>
         </div>
     </div>

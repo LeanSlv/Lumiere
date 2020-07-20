@@ -4,9 +4,9 @@
     ViewData["Title"] = "Profile";
 }
 
-<main id="container--account">
+<div id="container--account">
     <div class="container w-75">
-        <div class="d-flex align-items-center mt-4 mb-4">
+        <div class="d-flex align-items-center mt-5 mb-4">
             <h4 class="text-center flex-grow-1">Личный кабинет | @Model.FirstName @Model.SecondName</h4>
         </div>
         <hr>
@@ -38,7 +38,7 @@
                 </ul>
             </div>
 
-            <div class="scrollable col pl-4">
+            <div class="scrollable col pl-2">
                 <div class="mb-4 text-center"><span class="h5">Забронированные фильмы</span></div>
 
                 @await Component.InvokeAsync("ReservedSeatsList", Model)
@@ -47,6 +47,6 @@
         </div>
     </div>
     <hr />
-</main>
+</div>
 
-@await Html.PartialAsync("Posters")
+@(!User.Identity.IsAuthenticated || !User.IsInRole("admin") ? await Component.InvokeAsync("PostersSlider") : new StringHtmlContent(""))

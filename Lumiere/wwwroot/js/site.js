@@ -11,4 +11,14 @@ $(function () {
             prevEl: '.swiper-button-prev',
         },
     });
+
+    // Проверка и удаление сеансов каждую минуту.
+    setInterval(deletingPastSeances, 900000);
 });
+
+function deletingPastSeances() {
+    $.ajax({
+        method: "POST",
+        url: "Seance/DeletingPastSeances"
+    });
+}

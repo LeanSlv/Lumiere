@@ -4,44 +4,81 @@
 
 @foreach(Film film in Model) 
 {
-    <div class="card mb-3" style="max-height: 255px;">
+    <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a asp-controller="Film" asp-action="Index" asp-route-id=@film.Id>
                     <img src=@film.Posters.First().Url class="card-img" style="max-height: 250px;" alt="Постер фильма">
                 </a>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8" style="max-height: 250px; overflow-y: scroll;">
                 <div class="card-body pl-0">
-                    <div class="d-flex text-center mb-1">
+                    <div class="d-flex text-center">
                         <span class="h6 card-title text-center flex-grow-1">@film.Name @film.AgeLimit+</span>
 
                         <a class="text-info text-dark" asp-controller="Film" asp-action="Update" asp-route-id=@film.Id><i class="icofont-pencil-alt-2 ml-3"></i></a>
-                        <form method="post" asp-controller="Film" asp-action="Delete">
-                            <input type="hidden" asp-for=@film.Id name="id" />
-                            <button type="submit"><i class="icofont-ui-delete ml-1"></i></button>
-                        </form>
+                        <button type="button" onclick='filmDeletionConfirm("@film.Id")'><i class="icofont-ui-delete ml-1"></i></button>
                     </div>
 
                     <div class="d-flex flex-column text-center justify-content-between mr-5 pl-3 pr-3">
-                        <span class="text-dark mb-2">драма, приключение, семейный</span>
-                        <small class="card-text text-dark">Длительность: @film.Duration</small>
-                        <small class="card-text">Формат: 2D</small>
-                        <small class="card-text pr-2 pl-2">
-                            Время сеансов сегодня:
-                            <br />
-                            @foreach (FilmSeance seance in film.Seances)
-                            {
-                                if (seance.Date == DateTime.Today)
-                                {
-                                    <span class="card-text">@seance.Time.ToString("t")</span>
-                                }
-                            }
-                        </small>
-                        <small class="card-text mt-1 text-truncate">@film.Description</small>
+                        <small class="text-dark">@film.Genres</small>
+                        <small class="text-dark">Длительность: @film.Duration</small>
+                        <small class="card-text text-truncate">@film.Description</small>
+                        <p class="card-text pr-2 pl-2 mb-0 mt-3">Сеансы:</p>
+
+                        @foreach (FilmSeance seance in film.Seances)
+                        {
+                            <div class="d-flex align-items-center justify-content-around">
+                                <span class="card-text flex-grow-1 h6 mb-0">@seance.Format @seance.Date.ToString("m") @seance.Time.ToString(@"hh\:mm") @seance.Price руб</span>
+
+                                <button type="button" onclick='seanceDeletionConfirm("@seance.Id")'>
+                                    <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
+                                </button>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 }
+
+<div class="modal" id="filmDeleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="p-4" method="post" asp-controller="Film" asp-action="Delete">
+                    <h6>Вы уверены, что хотите удалить фильм?</h6>
+                    <br>
+                    <input type="hidden" id="film_Id" name="id" value="">
+
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="seanceDeleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="p-4" method="post" asp-controller="Seance" asp-action="Delete">
+                    <h6>Вы уверены, что хотите удалить сеанс?</h6>
+                    <br>
+                    <input type="hidden" id="seance_Id" name="id" value="">
+
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Люмьер</title>
 
-    @await  Html.PartialAsync("StylesPartial")
+    @await Html.PartialAsync("Favicons")
+
+    @await Html.PartialAsync("StylesPartial")
 
 </head>
-<body class="bg-light">
+<body class="bg-light container">
     <div class="container-sm pl-1 pr-1">
         @await Html.PartialAsync("HeaderPartial")
 
-        <div class="container">
-            <main role="main" class="pb-3">
+            <main role="main" class="pb-2">
                 @RenderBody()
             </main>
-        </div>
 
         @await Html.PartialAsync("FooterPartial")
 

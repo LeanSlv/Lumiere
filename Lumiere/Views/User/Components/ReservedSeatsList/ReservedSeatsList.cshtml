@@ -7,21 +7,30 @@
         <div class="row no-gutters">
             <div class="col-md-4">
                 <a asp-controller="Film" asp-action="Index" asp-route-id=@reservedFilm.FilmId>
-                    <img src=@reservedFilm.FilmPosterUrl class="card-img" alt="Постер к фильму">
+                    <img src=@reservedFilm.FilmPosterUrl class="card-img" alt="Постер к фильму" style="max-height: 220px;">
                 </a>
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title text-center">@reservedFilm.FilmName</h5>
+            <div class="col-md-8" style="max-height: 218px; overflow-y: scroll;">
+                <div class="card-body pt-2">
+                    <h6 class="card-text text-center">@reservedFilm.FilmName</h6>
 
                     <div class="d-flex flex-column text-center justify-content-between">
-                        <span class="card-text text-dark mb-2">Длительность: @reservedFilm.FilmDuration</span>
-                        <p class="card-text h6">Дата сеанса: @reservedFilm.SeanceDate</p>
-                        <p class="card-text h6">Время сеанса: @reservedFilm.SeanceTime</p>
-                        <p class="card-text h6">Зал @reservedFilm.RoomNumber</p>
-                        @foreach (KeyValuePair<int, int> rowSeatNumber in reservedFilm.RowSeatNumbers)
+                        <span class="card-text text-dark">Длительность: @reservedFilm.FilmDuration</span>
+                        <div>
+                            <span class="card-text">Дата: @reservedFilm.SeanceDate.ToString("m")</span>&ensp;
+                            <span class="card-text">Время: @reservedFilm.SeanceTime.ToString(@"hh\:mm")</span>
+                        </div>
+                        <span class="card-text mt-2 h6 mb-0">@reservedFilm.RoomNumber</span>
+                        @foreach (KeyValuePair<Guid, string> seatRowNumber in reservedFilm.SeatRowNumbers)
                         {
-                            <p class="card-text h6">Ряд @rowSeatNumber.Key Место @rowSeatNumber.Value</p>
+                            <div class="d-flex align-items-center justify-content-around">
+                                <span class="card-text flex-grow-1 h6 mb-0">@seatRowNumber.Value</span>
+                                <form asp-controller="Booking" asp-action="Delete" asp-route-seatId=@seatRowNumber.Key>
+                                    <button type="submit" onclick='reservedSeatDeletionConfirm("@seatRowNumber.Key")'>
+                                        <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
+                                    </button>
+                                </form>
+                            </div>
                         }
                     </div>
                 </div>
@@ -29,3 +38,23 @@
         </div>
     </div>
 }
+
+<div class="modal" id="reservedSeatDeleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="p-4" method="post" asp-controller="Seance" asp-action="Delete">
+                    <h6>Вы уверены, что хотите отменить бронь?</h6>
+                    <br>
+                    <input type="hidden" id="seat_Id" name="seatId" value="">
+
+                    <button type="submit" class="btn btn-danger">Отменить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

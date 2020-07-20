@@ -1,0 +1,8 @@
+﻿@model List<DateTime>
+
+    <select id="date" class="form-control" onchange="loadTimes($('#date'));">
+        @foreach (DateTime date in Model)
+        {
+            <option value=@date>@date.ToString("m")</option>
+        }
+    </select>

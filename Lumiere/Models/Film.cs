@@ -14,6 +14,8 @@ namespace Lumiere.Models
         public DateTime ReleaseDate { get; set; }
         public double Rating { get; set; }
         public TimeSpan Duration { get; set; }
+        public string Genres { get; set; }
+        public string KinopoiskId { get; set; }
         public List<FilmFeedback> Feedbacks { get; set; }
         public List<FilmPoster> Posters { get; set; }
         public FilmTrailer Trailer { get; set; }

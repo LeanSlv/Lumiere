@@ -57,7 +57,9 @@ namespace Lumiere.Controllers
                 Description = model.Description,
                 AgeLimit = model.AgeLimit,
                 ReleaseDate = model.ReleaseDate,
-                Duration = model.Duration
+                Duration = model.Duration,
+                Genres = model.Genres,
+                KinopoiskId = model.KinopoiskId
             };
             await _filmRepository.CreateAsync(film);
 
@@ -93,6 +95,8 @@ namespace Lumiere.Controllers
                 AgeLimit = film.AgeLimit,
                 ReleaseDate = film.ReleaseDate,
                 Duration = film.Duration,
+                Genres = film.Genres,
+                KinopoiskId = film.KinopoiskId,
                 TrailerUrl = film.Trailer.Url
             };
 
@@ -114,6 +118,8 @@ namespace Lumiere.Controllers
             film.AgeLimit = model.AgeLimit;
             film.ReleaseDate = model.ReleaseDate;
             film.Duration = model.Duration;
+            film.Genres = model.Genres;
+            film.KinopoiskId = model.KinopoiskId;
             film.Trailer.Url = model.TrailerUrl;
 
             List<FilmPoster> filmPosters = await SavePostersImages(film.Id, posters);

@@ -26,7 +26,7 @@ namespace Lumiere
             services.AddControllersWithViews();
 
             services.AddDbContext<LumiereContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 6;   // минимальная длина

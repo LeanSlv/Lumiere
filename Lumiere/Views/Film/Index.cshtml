@@ -1,14 +1,16 @@
 ﻿@model Lumiere.Models.Film
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = Model.Name;
 }
 
-<main id="container--register">
-    <div class="container w-75 pl-5 pr-5 pb-4">
+<div class="container--account">
+    <div class="container w-75 pl-5 pr-5 pb-4 mt-4">
+        <input type="hidden" id="kinopoisk_id" value=@Model.KinopoiskId />
+
         <!-- title container -->
         <div class="d-flex justify-content-between text-center align-items-center mb-4">
-            <h4 class="text-center flex-grow-1">@Model.Name @Model.AgeLimit+</h4>
+            <h4 class="text-center flex-grow-1 text-wrap">@Model.Name @Model.AgeLimit+</h4>
 
             @if (User.IsInRole("admin"))
             {
@@ -27,9 +29,22 @@
             <!-- right details column -->
             <div class="col pl-1">
                 <div class="d-flex flex-column mb-4 text-center justify-content-between">
-                    <span class="text-dark mb-3"><b>Рейтинг Кинопоиска: </b><span id="raiting"></span></span>
-                    <span class="text-dark mb-3">драма, приключение, семейный</span>
-                    <span class="text-dark">Формат: 2D</span>
+                    <span class="text-dark mb-3"><b>Рейтинг Кинопоиска: </b><span id="rating"></span></span>
+                    
+                    <div class="rating-mini">
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                    </div>
+
+                    <span class="text-dark mb-3">@Model.Genres</span>
                     <span class="text-dark mb-4">Длительность: @Model.Duration.ToString("t")</span>
                     <span class="h6">Сеансы сегодня, @DateTime.Today.ToString("m"):</span>
                     <div class="d-flex justify-content-around flex-wrap">
@@ -41,19 +56,19 @@
                             }
                         }
                     </div>
-                    <button type="button" class="btn btn-warning align-self-center mt-4">
+                    <a class="btn btn-warning align-self-center mt-4" asp-controller="Booking" asp-action="Index" asp-route-filmId=@Model.Id>
                         <i class="icofont-film pr-2"></i>
                         Забронировать
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
         <!-- movie description -->
-        <div class="text-center pl-5 pr-5 h5">
+        <div class="text-center text-wrap pl-5 pr-5 h5">
             @Model.Description
         </div>
     </div>
     <hr />
-</main>
+</div>
 
-@await Html.PartialAsync("Posters")
+@(!User.Identity.IsAuthenticated || !User.IsInRole("admin") ? await Component.InvokeAsync("PostersSlider") : new StringHtmlContent(""))

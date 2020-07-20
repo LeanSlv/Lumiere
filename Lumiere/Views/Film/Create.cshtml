@@ -1,10 +1,10 @@
 ﻿@model Lumiere.ViewModels.FilmViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Добавить фильм";
 }
-<div class="container--register">
-    <div class="container w-75 mt-5">
+<div class="container--account">
+    <div class="container w-75 mt-4">
         <!-- title -->
         <h4 class="text-center mb-4">Добавить фильм</h4>
         <hr>
@@ -21,11 +21,11 @@
 
                 <div class="form-group">
                     <label asp-for="Description">Описание</label>
-                    <input type="text" asp-for="Description" class="form-control" />
+                    <textarea asp-for="Description" class="form-control"></textarea>
                     <span asp-validation-for="Description"></span>
                 </div>
 
-                <div class="form-row d-flex justify-content-center">
+                <div class="form-row d-flex justify-content-between">
                     <div class="form-group col-md-3">
                         <label asp-for="AgeLimit">Ограничение</label>
                         <input type="number" asp-for="AgeLimit" class="form-control" />
@@ -46,6 +46,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Genres">Жанры</label>
+                    <input type="text" asp-for="Genres" class="form-control" />
+                    <span asp-validation-for="Genres"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="KinopoiskId">Кинопоиск id</label>
+                    <input type="text" asp-for="KinopoiskId" class="form-control" />
+                    <span asp-validation-for="KinopoiskId"></span>
+                </div>
+
+                <div class="form-group">
                     <label asp-for="TrailerUrl">Ссылка на трейлер</label>
                     <input type="url" asp-for="TrailerUrl" class="form-control" />
                     <span asp-validation-for="TrailerUrl"></span>
@@ -63,6 +75,6 @@
             <br>
         </div>
 
-    <hr />  
     </div>
+    <hr />  
 </div>
