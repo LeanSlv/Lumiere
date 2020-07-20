@@ -18,6 +18,13 @@ function getRaiting(id) {
 
     if (request.status == 200) {
         data = JSON.parse(request.responseText);
-        document.getElementById("raiting").innerHTML = data.rating.rating;
+        let rating = data.rating.rating;
+        document.getElementById("rating").innerHTML = rating;
+
+        $('span[name ="star"]').each(function (index) {
+            if (index < Number(rating)) {
+                $(this).addClass("active");
+            }
+        });
     }
 }

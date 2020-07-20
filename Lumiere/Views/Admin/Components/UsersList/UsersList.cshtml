@@ -23,11 +23,35 @@
                 <td class="text-center">@(await _userRepository.IsInRoleAsync(user, "admin") ? "Да" : "Нет")</td> 
                 <td class="d-flex justify-content-center align-items-center">
                     <a class="text-info text-dark" asp-controller="User" asp-action="Edit" asp-route-id=@user.Id><i class="icofont-user"></i></a> 
-                    <form method="post" asp-controller="User" asp-action="Delete" asp-route-id=@user.Id>
-                        <button type="submit"><i class="icofont-ui-delete"></i></button>
-                    </form>
+                    
+                    @if (User.Identity.Name != user.UserName)
+                    {
+                        <button onclick='userDeletionConfirm("@user.Id")' type="button">
+                            <i class="icofont-ui-delete"></i>
+                        </button>
+                    }
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="modal" id="userDeleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <form class="p-4" method="post" asp-controller="User" asp-action="Delete">
+                    <h6>Вы уверены, что хотите удалить пользователя?</h6>
+                    <br>
+                    <input type="hidden" id="user_Id" name="id" value="">
+
+                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

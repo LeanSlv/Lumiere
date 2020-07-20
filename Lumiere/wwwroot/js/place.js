@@ -84,7 +84,6 @@ function setPrice(){
 }
 
 function block() {
-	console.log("block");
 	for (var index = 0; index < seats.length; ++index) {
 		seats[index].style = "";
 		seats[index].disabled = 0;
@@ -92,6 +91,7 @@ function block() {
 
 	for (var i = 0; i < blocked.length; i++) {
 		seats[blocked[i]].style = "background : #929397 !important";
+		seats[blocked[i]].disabled = 1;
 		if (seats[blocked[i]].checked == 1) {
 			seats[blocked[i]].checked = 0;
 			selectedSeatsCount -= 1;

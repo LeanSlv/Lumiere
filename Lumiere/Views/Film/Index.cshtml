@@ -29,7 +29,21 @@
             <!-- right details column -->
             <div class="col pl-1">
                 <div class="d-flex flex-column mb-4 text-center justify-content-between">
-                    <span class="text-dark mb-3"><b>Рейтинг Кинопоиска: </b><span id="raiting"></span></span>
+                    <span class="text-dark mb-3"><b>Рейтинг Кинопоиска: </b><span id="rating"></span></span>
+                    
+                    <div class="rating-mini">
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                        <span name="star"></span>
+                    </div>
+
                     <span class="text-dark mb-3">@Model.Genres</span>
                     <span class="text-dark mb-4">Длительность: @Model.Duration.ToString("t")</span>
                     <span class="h6">Сеансы сегодня, @DateTime.Today.ToString("m"):</span>

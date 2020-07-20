@@ -1,6 +1,9 @@
 ﻿using Lumiere.Models;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Lumiere.Services
@@ -30,14 +33,16 @@ namespace Lumiere.Services
                 Text = message.MessageBody
             };
 
+            /* TODO: Для отправки писем на хостинге нужен сертификат.
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.mail.ru");
+                await client.ConnectAsync("smtp.mail.ru", 465, false);
                 await client.AuthenticateAsync(login, password);
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);
             }
+            */
         }
 
         public EmailMessage GetEmailConfirmMessage(string userName, string userEmail, string callbackUrl)

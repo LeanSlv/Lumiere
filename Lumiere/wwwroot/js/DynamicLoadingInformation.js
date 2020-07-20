@@ -128,7 +128,7 @@ function loadFormat() {
         data: filmSeance,
         dataType: "json",
         success: function (data) {
-            $('#format').text(data);
+            $('#format').text(data.format);
         }
     });
 }
