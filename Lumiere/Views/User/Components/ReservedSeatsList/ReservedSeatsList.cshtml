@@ -25,11 +25,10 @@
                         {
                             <div class="d-flex align-items-center justify-content-around">
                                 <span class="card-text flex-grow-1 h6 mb-0">@seatRowNumber.Value</span>
-                                <form asp-controller="Booking" asp-action="Delete" asp-route-seatId=@seatRowNumber.Key>
-                                    <button type="submit" onclick='reservedSeatDeletionConfirm("@seatRowNumber.Key")'>
+
+                                    <button type="button" onclick='reservedSeatDeletionConfirm("@seatRowNumber.Key")'>
                                         <span aria-hidden="true" style="font-size: 1.5rem; line-height: 1; font-weight: 700; color: #000000ab">&times;</span>
                                     </button>
-                                </form>
                             </div>
                         }
                     </div>
@@ -46,12 +45,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <form class="p-4" method="post" asp-controller="Seance" asp-action="Delete">
+                <form class="p-4" method="post" asp-controller="Booking" asp-action="Delete">
                     <h6>Вы уверены, что хотите отменить бронь?</h6>
                     <br>
                     <input type="hidden" id="seat_Id" name="seatId" value="">
 
-                    <button type="submit" class="btn btn-danger">Отменить</button>
+                    <button type="submit" class="btn btn-danger">Да</button>
                     <button class="btn btn-secondary" data-dismiss="modal">Нет</button>
                 </form>
             </div>
